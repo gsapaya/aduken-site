@@ -1,0 +1,18 @@
+:root {
+  --color-night: #07111f;
+  --color-surface: #0e1b2b;
+  --color-energy: #2f80ff;
+  --color-glow: #44d7ff;
+  --color-light: #f5f8fc;
+  --color-muted: #a6b3c4;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --gradient-energy: linear-gradient(135deg, #2f80ff 0%, #44d7ff 100%);
+  --font-heading: "Manrope", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --content-width: 1180px;
+  --radius-small: 10px;
+  --radius-medium: 18px;
+  --radius-large: 28px;
+  --shadow-soft: 0 24px 70px rgba(0, 0, 0, 0.22);
+}

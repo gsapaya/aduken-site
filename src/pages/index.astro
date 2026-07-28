@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout>
+  <Header />
+  <main class="hero-section" id="producto">
+    <section class="hero-copy" aria-labelledby="home-title">
+      <p class="eyebrow">Sistema de gestión comercial</p>
+      <h1 id="home-title">
+        Toda la potencia de tu negocio, sin la complejidad.
+      </h1>
+      <p class="hero-description">
+        Aduken reúne ventas, stock, caja y cuentas corrientes en una experiencia
+        rápida, clara y preparada para crecer con tu comercio.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#demo">Solicitar una demo</a>
+        <a class="button button-secondary" href={site.urls.productionApp}
+          >Ingresar</a
+        >
+      </div>
+      <p class="hero-tagline">{site.tagline}</p>
+    </section>
+    <aside class="hero-card" aria-label="Vista previa de la propuesta de valor">
+      <p class="card-label">Potencia</p>
+      <h2>Gestioná tu comercio con control y claridad.</h2>
+      <ul>
+        <li>Ventas y stock en un mismo lugar</li>
+        <li>Movimientos de caja y cuentas corrientes</li>
+        <li>Una base preparada para crecer</li>
+      </ul>
+    </aside>
+  </main>
+  <section
+    class="benefits"
+    id="caracteristicas"
+    aria-label="Beneficios principales"
+  >
+    <article>
+      <h3>Vendé con más velocidad</h3>
+      <p>
+        Una operación pensada para trabajar sin fricciones, con búsquedas
+        rápidas.
+      </p>
+    </article>
+    <article>
+      <h3>Controlá tu stock</h3>
+      <p>
+        Conocé existencias y movimientos sin depender de planillas separadas.
+      </p>
+    </article>
+    <article>
+      <h3>Ordená caja y cuentas corrientes</h3>
+      <p>Centralizá saldos y documentación comercial en una sola vista.</p>
+    </article>
+  </section>
+  <section class="cta-section" id="demo" aria-labelledby="demo-title">
+    <h2 id="demo-title">
+      Conocé una forma más simple de gestionar tu comercio.
+    </h2>
+    <p>
+      Solicitá una demostración y descubrí cómo Aduken puede adaptarse a tu
+      operación.
+    </p>
+    <a class="button button-primary" href="mailto:hola@aduken.ar"
+      >Solicitar una demo</a
+    >
+  </section>
+  <Footer />
+</BaseLayout>

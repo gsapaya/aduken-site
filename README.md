@@ -19,6 +19,22 @@ Sitio institucional y comercial de Aduken.
 - Render Static Site
 - GitHub
 
+## Product Book
+
+La carpeta [docs/product-book](docs/product-book) es la fuente principal de posicionamiento, mensaje, audiencia y narrativa del sitio institucional.
+
+- Guiar la implementación desde los documentos de esa carpeta.
+- No inventar mensajes ni funcionalidades fuera de la especificación.
+- Traducir las decisiones técnicas a beneficios claros para el usuario.
+
+## Despliegue en Render
+
+1. Crear un servicio de Render Static Site para este repositorio.
+2. Usar el comando de build: `npm run build`.
+3. Usar la carpeta de salida: `dist`.
+4. Definir la variable de entorno `PUBLIC_CONTACT_EMAIL` con la dirección de contacto deseada para el formulario.
+5. Publicar desde la rama principal.
+
 ## Próximos pasos
 
 1. Aprobar identidad visual.

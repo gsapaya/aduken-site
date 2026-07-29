@@ -2,73 +2,472 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { site } from "../data/site";
+
+const publicContactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL ?? "";
+const showConfigNotice = !publicContactEmail && import.meta.env.DEV;
 ---
 
 <BaseLayout>
   <Header />
-  <main class="hero-section" id="producto">
-    <section class="hero-copy" aria-labelledby="home-title">
-      <p class="eyebrow">Sistema de gestión comercial</p>
-      <h1 id="home-title">
-        Toda la potencia de tu negocio, sin la complejidad.
-      </h1>
-      <p class="hero-description">
-        Aduken reúne ventas, stock, caja y cuentas corrientes en una experiencia
-        rápida, clara y preparada para crecer con tu comercio.
-      </p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="#demo">Solicitar una demo</a>
-        <a class="button button-secondary" href={site.urls.productionApp}
-          >Ingresar</a
-        >
-      </div>
-      <p class="hero-tagline">{site.tagline}</p>
-    </section>
-    <aside class="hero-card" aria-label="Vista previa de la propuesta de valor">
-      <p class="card-label">Potencia</p>
-      <h2>Gestioná tu comercio con control y claridad.</h2>
-      <ul>
-        <li>Ventas y stock en un mismo lugar</li>
-        <li>Movimientos de caja y cuentas corrientes</li>
-        <li>Una base preparada para crecer</li>
-      </ul>
-    </aside>
-  </main>
-  <section
-    class="benefits"
-    id="caracteristicas"
-    aria-label="Beneficios principales"
-  >
-    <article>
-      <h3>Vendé con más velocidad</h3>
-      <p>
-        Una operación pensada para trabajar sin fricciones, con búsquedas
-        rápidas.
-      </p>
-    </article>
-    <article>
-      <h3>Controlá tu stock</h3>
-      <p>
-        Conocé existencias y movimientos sin depender de planillas separadas.
-      </p>
-    </article>
-    <article>
-      <h3>Ordená caja y cuentas corrientes</h3>
-      <p>Centralizá saldos y documentación comercial en una sola vista.</p>
-    </article>
-  </section>
-  <section class="cta-section" id="demo" aria-labelledby="demo-title">
-    <h2 id="demo-title">
-      Conocé una forma más simple de gestionar tu comercio.
-    </h2>
-    <p>
-      Solicitá una demostración y descubrí cómo Aduken puede adaptarse a tu
-      operación.
-    </p>
-    <a class="button button-primary" href="mailto:hola@aduken.ar"
-      >Solicitar una demo</a
+  <main>
+    <section
+      class="hero section-shell"
+      id="producto"
+      aria-labelledby="hero-title"
     >
-  </section>
+      <div class="hero-copy">
+        <p class="eyebrow">Sistema de gestión adaptable</p>
+        <h1 id="hero-title">Un sistema que entiende cómo trabajás.</h1>
+        <p class="lead">
+          Aduken combina experiencia, acompañamiento humano e inteligencia
+          aplicada para resolver las necesidades reales de tu negocio sin
+          obligarte a cambiar tu forma de trabajar.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#contacto"
+            >Conversemos sobre tu negocio</a
+          >
+          <a class="button button-secondary" href="#como-trabajamos"
+            >Conocé cómo trabajamos</a
+          >
+        </div>
+        <p class="microcopy">
+          No empezamos con una demo. Empezamos escuchando.
+        </p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 520 420" role="img">
+          <rect x="64" y="44" width="392" height="332" rx="28" fill="#ffffff"
+          ></rect>
+          <path
+            d="M128 140h84"
+            stroke="#2f80ff"
+            stroke-width="10"
+            stroke-linecap="round"></path>
+          <path
+            d="M129 192h120"
+            stroke="#7aaef3"
+            stroke-width="10"
+            stroke-linecap="round"></path>
+          <path
+            d="M129 244h96"
+            stroke="#b96b2f"
+            stroke-width="10"
+            stroke-linecap="round"></path>
+          <rect x="260" y="112" width="134" height="82" rx="18" fill="#f7f2ea"
+          ></rect>
+          <rect x="260" y="220" width="134" height="84" rx="18" fill="#eef6ff"
+          ></rect>
+          <path
+            d="M392 154h44"
+            stroke="#07111f"
+            stroke-width="8"
+            stroke-linecap="round"></path>
+          <path
+            d="M436 154v116"
+            stroke="#07111f"
+            stroke-width="8"
+            stroke-linecap="round"></path>
+          <path
+            d="M436 270h-44"
+            stroke="#2f80ff"
+            stroke-width="8"
+            stroke-linecap="round"></path>
+          <circle cx="440" cy="154" r="10" fill="#2f80ff"></circle>
+          <circle cx="440" cy="270" r="10" fill="#2f80ff"></circle>
+          <path
+            d="M260 154h-56"
+            stroke="#07111f"
+            stroke-width="8"
+            stroke-linecap="round"></path>
+          <path
+            d="M204 154v116"
+            stroke="#07111f"
+            stroke-width="8"
+            stroke-linecap="round"></path>
+          <path
+            d="M204 270h56"
+            stroke="#07111f"
+            stroke-width="8"
+            stroke-linecap="round"></path>
+        </svg>
+      </div>
+    </section>
+
+    <section
+      class="section-shell section"
+      id="negocios-diferentes"
+      aria-labelledby="different-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">Comprensión antes que acción</p>
+        <h2 id="different-title">
+          No creemos que todas las empresas deban trabajar igual.
+        </h2>
+      </div>
+      <div class="comparison-grid">
+        <article class="card card-contrast">
+          <h3>Fábrica</h3>
+          <p>Venta → Producción → Preparación → Entrega</p>
+        </article>
+        <article class="card card-contrast">
+          <h3>Ferretería</h3>
+          <p>Venta → Entrega</p>
+        </article>
+        <article class="card card-base">
+          <h3>Aduken</h3>
+          <p>
+            Una base común para trabajar con claridad y adaptarse sin perder
+            estabilidad.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section
+      class="section-shell section"
+      id="problema-habitual"
+      aria-labelledby="problem-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">El problema habitual</p>
+        <h2 id="problem-title">
+          Cuando el sistema no entiende el trabajo, el trabajo termina rodeando
+          al sistema.
+        </h2>
+      </div>
+      <div class="problem-grid">
+        <article class="card">Planillas paralelas</article>
+        <article class="card">Información duplicada</article>
+        <article class="card">Tareas repetidas</article>
+        <article class="card">Procesos manuales</article>
+        <article class="card">Personas que conocen “el truco”</article>
+        <article class="card">Soporte desconectado del problema real</article>
+      </div>
+    </section>
+
+    <section
+      class="section-shell section"
+      id="como-trabajamos"
+      aria-labelledby="how-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2 id="how-title">Primero entendemos. Después construimos.</h2>
+      </div>
+      <div class="steps-grid" role="list">
+        <article class="step-card" role="listitem">
+          <span>01</span>
+          <h3>Escuchamos</h3>
+        </article>
+        <article class="step-card" role="listitem">
+          <span>02</span>
+          <h3>Relevamos</h3>
+        </article>
+        <article class="step-card" role="listitem">
+          <span>03</span>
+          <h3>Identificamos</h3>
+        </article>
+        <article class="step-card" role="listitem">
+          <span>04</span>
+          <h3>Proponemos</h3>
+        </article>
+        <article class="step-card" role="listitem">
+          <span>05</span>
+          <h3>Implementamos</h3>
+        </article>
+        <article class="step-card" role="listitem">
+          <span>06</span>
+          <h3>Validamos</h3>
+        </article>
+        <article class="step-card" role="listitem">
+          <span>07</span>
+          <h3>Acompañamos</h3>
+        </article>
+      </div>
+    </section>
+
+    <section
+      class="section-shell section"
+      id="historia"
+      aria-labelledby="story-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">Experiencia real</p>
+        <h2 id="story-title">
+          Construido desde negocios reales y dominios complejos.
+        </h2>
+      </div>
+      <div class="story-layout">
+        <p>
+          Aduken nació de años de convivir con negocios y desarrollar software
+          para operaciones complejas. Aprendimos que una fábrica, una ferretería
+          y una empresa industrial pueden compartir muchas necesidades y, aun
+          así, trabajar de maneras completamente diferentes.
+        </p>
+        <blockquote>
+          Adaptarse al cliente no alcanza. Cada adaptación también debe poder
+          mantenerse.
+        </blockquote>
+      </div>
+    </section>
+
+    <section
+      class="section-shell section"
+      id="inteligencia"
+      aria-labelledby="ai-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">Inteligencia aplicada</p>
+        <h2 id="ai-title">
+          La inteligencia artificial debería sacarte trabajo, no darte nuevas
+          cosas que aprender.
+        </h2>
+      </div>
+      <div class="ai-layout">
+        <div class="ai-flow" aria-hidden="true">
+          <span>Archivo Excel</span>
+          <span>✓ Análisis</span>
+          <span>⚑ Productos y precios</span>
+          <span>↺ Alternativas</span>
+          <span>✓ Confirmación humana</span>
+          <span>⚙ Resultado procesado</span>
+        </div>
+        <p>
+          Un proveedor te envía una lista de precios en Excel. Aduken analiza la
+          información, identifica productos, códigos, precios e inconsistencias,
+          y te presenta alternativas comprensibles sin exigir que aprendas
+          estructuras técnicas.
+        </p>
+        <p>
+          La IA también ayuda a validar cambios, ampliar pruebas y detectar
+          riesgos antes de que una actualización llegue al cliente.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-shell section" aria-labelledby="base-title">
+      <div class="section-heading">
+        <p class="eyebrow">Base y capacidades</p>
+        <h2 id="base-title">
+          Una base sólida para negocios que no son iguales.
+        </h2>
+      </div>
+      <div class="base-layout">
+        <div class="base-card">
+          <h3>Base estable</h3>
+          <p>Un núcleo común para ventas, clientes y operaciones esenciales.</p>
+        </div>
+        <div class="base-card">
+          <h3>Capacidades específicas</h3>
+          <ul>
+            <li>orden de producción;</li>
+            <li>información adicional en factura;</li>
+            <li>aprobación especial;</li>
+            <li>importación con reglas propias;</li>
+            <li>circuito de entrega particular.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="standout">
+        Adaptado a tu operación. Preparado para seguir evolucionando.
+      </p>
+    </section>
+
+    <section class="section-shell section" aria-labelledby="capabilities-title">
+      <div class="section-heading">
+        <p class="eyebrow">Capacidades del producto</p>
+        <h2 id="capabilities-title">
+          La gestión que necesitás, sobre una base que puede crecer.
+        </h2>
+      </div>
+      <div class="capability-grid">
+        <article class="capability-card">
+          <h3>Operación comercial</h3>
+          <p>Procesos de venta y seguimiento del negocio.</p>
+        </article>
+        <article class="capability-card">
+          <h3>Productos y stock</h3>
+          <p>Control y organización del catálogo y la disponibilidad.</p>
+        </article>
+        <article class="capability-card">
+          <h3>Administración</h3>
+          <p>Flujos de trabajo y estructura de información.</p>
+        </article>
+        <article class="capability-card">
+          <h3>Tesorería</h3>
+          <p>Movimientos y visibilidad de caja y cuentas corrientes.</p>
+        </article>
+        <article class="capability-card">
+          <h3>Organización</h3>
+          <p>Usuarios, sucursales y prioridades de operación.</p>
+        </article>
+      </div>
+    </section>
+
+    <section
+      class="section-shell section proposal-section"
+      aria-labelledby="proposal-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">Propuesta comercial</p>
+        <h2 id="proposal-title">
+          No queremos que elijas Aduken por una presentación.
+        </h2>
+      </div>
+      <div class="proposal-card">
+        <p>
+          Queremos entender tu operación, ayudarte a utilizarlo en situaciones
+          reales y que puedas evaluar si verdaderamente mejora tu trabajo.
+          Cuando estés convencido de que aporta valor, hablamos del acuerdo
+          comercial.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#contacto"
+            >Conversemos sobre tu negocio</a
+          >
+        </div>
+        <p class="microcopy">
+          Sin presión comercial. Sin una demo genérica. Empezamos por tu
+          problema.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="section-shell section"
+      id="contacto"
+      aria-labelledby="contact-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">Contacto</p>
+        <h2 id="contact-title">
+          ¿Qué parte de tu trabajo debería ser más simple?
+        </h2>
+      </div>
+      <form
+        class="contact-form"
+        id="contact-form"
+        data-contact-email={publicContactEmail}
+      >
+        <label>
+          Problema o proceso
+          <textarea name="problem" rows="4" required></textarea>
+        </label>
+        <div class="form-grid">
+          <label>
+            Nombre
+            <input name="name" type="text" required />
+          </label>
+          <label>
+            Empresa
+            <input name="company" type="text" required />
+          </label>
+          <label>
+            Actividad
+            <input name="activity" type="text" required />
+          </label>
+          <label>
+            Correo
+            <input name="email" type="email" required />
+          </label>
+          <label>
+            WhatsApp (opcional)
+            <input name="whatsapp" type="tel" />
+          </label>
+          <label>
+            Usuarios aproximados
+            <input name="users" type="number" min="1" />
+          </label>
+        </div>
+        <label>
+          Herramientas actuales (opcional)
+          <input name="tools" type="text" />
+        </label>
+        <div class="form-actions">
+          <button
+            class="button button-primary"
+            type="submit"
+            disabled={!publicContactEmail}
+          >
+            {publicContactEmail ? "Enviar y conversar" : "Envío pendiente"}
+          </button>
+          {
+            showConfigNotice && (
+              <p class="config-note" role="status">
+                Configura PUBLIC_CONTACT_EMAIL para activar el envío desde el
+                formulario.
+              </p>
+            )
+          }
+        </div>
+        <p class="form-status" id="form-status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
   <Footer />
 </BaseLayout>
+
+<script>
+  const form = document.getElementById(
+    "contact-form",
+  ) as HTMLFormElement | null;
+  const status = document.getElementById(
+    "form-status",
+  ) as HTMLParagraphElement | null;
+
+  if (form && status) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+      const recipient = form.getAttribute("data-contact-email") || "";
+      const fields = {
+        problem: data.get("problem")?.toString().trim() || "",
+        name: data.get("name")?.toString().trim() || "",
+        company: data.get("company")?.toString().trim() || "",
+        activity: data.get("activity")?.toString().trim() || "",
+        email: data.get("email")?.toString().trim() || "",
+        whatsapp: data.get("whatsapp")?.toString().trim() || "",
+        users: data.get("users")?.toString().trim() || "",
+        tools: data.get("tools")?.toString().trim() || "",
+      };
+
+      const missing = [
+        fields.problem,
+        fields.name,
+        fields.company,
+        fields.activity,
+        fields.email,
+      ].some((value) => !value);
+
+      if (missing) {
+        status.textContent =
+          "Completá los campos obligatorios antes de enviar.";
+        return;
+      }
+
+      if (!recipient) {
+        status.textContent =
+          "El envío se habilitará cuando se configure PUBLIC_CONTACT_EMAIL.";
+        return;
+      }
+
+      const subject = `Consulta Aduken — ${fields.name} (${fields.company})`;
+      const body = [
+        `Problema o proceso: ${fields.problem}`,
+        `Nombre: ${fields.name}`,
+        `Empresa: ${fields.company}`,
+        `Actividad: ${fields.activity}`,
+        `Correo: ${fields.email}`,
+        `WhatsApp: ${fields.whatsapp || "No informado"}`,
+        `Usuarios aproximados: ${fields.users || "No informado"}`,
+        `Herramientas actuales: ${fields.tools || "No informado"}`,
+      ].join("\n");
+
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      status.textContent =
+        "Se abrirá tu cliente de correo para completar el envío.";
+    });
+  }
+</script>

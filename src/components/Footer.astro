@@ -3,7 +3,15 @@ import { site } from "../data/site";
 ---
 
 <footer class="site-footer">
-  <p>
-    © 2026 {site.name}. Potencia para administrar. Simplicidad para trabajar.
-  </p>
+  <div class="footer-links">
+    <a href="#producto">Producto</a>
+    <a href="#como-trabajamos">Cómo trabajamos</a>
+    <a href="#inteligencia">Inteligencia aplicada</a>
+    <a href="#historia">Nuestra historia</a>
+    <a href="#contacto">Contacto</a>
+    <a href={site.urls.productionApp}>Ingresar</a>
+    <a href="/privacidad">Privacidad</a>
+    <a href="/terminos">Términos</a>
+  </div>
+  <p>© 2026 {site.name}. Power of Simplicity.</p>
 </footer>

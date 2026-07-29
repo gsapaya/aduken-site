@@ -4,14 +4,46 @@ import { site } from "../data/site";
 
 <header class="site-header">
   <a class="brand" href="/" aria-label={`Inicio de ${site.name}`}>
-    <span class="brand-mark">A</span>
+    <span class="brand-mark" aria-hidden="true">A</span>
     <span class="brand-name">{site.name}</span>
   </a>
-  <nav class="site-nav" aria-label="Navegación principal">
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="site-nav"
+    id="nav-toggle"
+  >
+    <span class="sr-only">Abrir menú</span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
     <a href="#producto">Producto</a>
-    <a href="#caracteristicas">Características</a>
-    <a href="#demo">Demo</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#como-trabajamos">Cómo trabajamos</a>
+    <a href="#inteligencia">Inteligencia aplicada</a>
+    <a href="#historia">Nuestra historia</a>
     <a class="nav-cta" href={site.urls.productionApp}>Ingresar</a>
   </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.getElementById("site-nav");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      nav.classList.toggle("is-open", !isOpen);
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        toggle.setAttribute("aria-expanded", "false");
+        nav.classList.remove("is-open");
+      });
+    });
+  }
+</script>

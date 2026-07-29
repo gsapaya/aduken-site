@@ -4,18 +4,28 @@ Este directorio es la fuente de verdad del posicionamiento, mensaje, experiencia
 
 ## Orden de lectura
 
-1. `01-vision.md`
-2. `02-problem.md`
-3. `03-promise.md`
-4. `04-positioning.md`
-5. `05-audience.md`
-6. `06-message-architecture.md`
-7. `07-home-narrative.md`
-8. `08-brand-voice.md`
-9. `09-ai-and-customization.md`
-10. `10-proof-and-trust.md`
-11. `11-product-principles.md`
-12. `12-roadmap.md`
+1. `00-philosophy.md`
+2. `01-vision.md`
+3. `02-problem.md`
+4. `03-promise.md`
+5. `04-positioning.md`
+6. `05-audience.md`
+7. `06-message-architecture.md`
+8. `07-home-narrative.md`
+9. `08-brand-voice.md`
+10. `09-ai-and-customization.md`
+11. `10-proof-and-trust.md`
+12. `11-product-principles.md`
+13. `12-roadmap.md`
+14. `13-manifesto.md`
+15. `14-founder-story.md`
+16. `15-commercial-philosophy.md`
+17. `16-customer-journey.md`
+18. `17-home-wireframe.md`
+
+## Especificación principal para la Home
+
+`17-home-wireframe.md` es la especificación principal de la futura Home del sitio. La Home no debe implementarse todavía y cualquier implementación futura debe respetar ese documento.
 
 ## Regla principal
 

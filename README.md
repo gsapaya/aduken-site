@@ -33,6 +33,8 @@ La carpeta [docs/product-book](docs/product-book) es la fuente principal de posi
 2. Usar el comando de build: `npm run build`.
 3. Usar la carpeta de salida: `dist`.
 4. Definir la variable de entorno `PUBLIC_CONTACT_EMAIL` con la dirección de contacto deseada para el formulario.
+   - Alternativa: definir `PUBLIC_CONTACT_ENDPOINT` con un endpoint que reciba POST JSON para enviar mensajes desde el formulario (p. ej. Formspree, Getform o una función serverless propia).
+   - Opcional: definir `PUBLIC_WHATSAPP_NUMBER` con el teléfono internacional (sin signos ni espacios, p. ej. 5491122334455) para mostrar un botón de "Chatear por WhatsApp".
 5. Publicar desde la rama principal.
 
 ## Próximos pasos

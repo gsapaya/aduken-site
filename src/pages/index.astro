@@ -7,7 +7,8 @@ const publicContactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL ?? "";
 const publicContactEndpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? "";
 const publicWhatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? "";
 const showConfigNotice =
-  !publicContactEmail && !publicContactEndpoint && import.meta.env.DEV;
+  !publicContactEmail && !publicContactEndpoint && !publicWhatsappNumber &&
+  import.meta.env.DEV;
 ---
 
 <BaseLayout>
@@ -26,38 +27,13 @@ const showConfigNotice =
           aplicada para resolver las necesidades reales de tu negocio sin
           obligarte a cambiar tu forma de trabajar.
         </p>
-        <div class="form-actions">
-          <button
-            class="button button-primary"
-            type="submit"
-            disabled={!publicContactEmail && !publicContactEndpoint}
+        <div class="hero-actions">
+          <a class="button button-primary" href="#contacto"
+            >Conversemos sobre tu negocio</a
           >
-            {
-              publicContactEndpoint || publicContactEmail
-                ? "Enviar y conversar"
-                : "Envío pendiente"
-            }
-          </button>
-          {
-            publicWhatsappNumber && (
-              <a
-                class="button button-secondary"
-                href={`https://wa.me/${publicWhatsappNumber}?text=${encodeURIComponent("Hola, quiero conversar sobre: ")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Chatear por WhatsApp
-              </a>
-            )
-          }
-          {
-            showConfigNotice && (
-              <p class="config-note" role="status">
-                Configura PUBLIC_CONTACT_EMAIL o PUBLIC_CONTACT_ENDPOINT para
-                activar el envío desde el formulario.
-              </p>
-            )
-          }
+          <a class="button button-secondary" href="#como-trabajamos"
+            >Conocé cómo trabajamos</a
+          >
         </div>
       </div>
     </section>
@@ -371,6 +347,8 @@ const showConfigNotice =
       class="contact-form"
       id="contact-form"
       data-contact-email={publicContactEmail}
+      data-contact-endpoint={publicContactEndpoint}
+      data-contact-whatsapp={publicWhatsappNumber}
     >
       <label>
         Problema o proceso
@@ -410,15 +388,21 @@ const showConfigNotice =
         <button
           class="button button-primary"
           type="submit"
-          disabled={!publicContactEmail}
+          disabled={
+            !publicContactEmail && !publicContactEndpoint && !publicWhatsappNumber
+          }
         >
-          {publicContactEmail ? "Enviar y conversar" : "Envío pendiente"}
+          {
+            publicContactEndpoint || publicWhatsappNumber || publicContactEmail
+              ? "Enviar y conversar"
+              : "Envío pendiente"
+          }
         </button>
         {
           showConfigNotice && (
             <p class="config-note" role="status">
-              Configura PUBLIC_CONTACT_EMAIL para activar el envío desde el
-              formulario.
+              Configura PUBLIC_CONTACT_EMAIL, PUBLIC_CONTACT_ENDPOINT o
+              PUBLIC_WHATSAPP_NUMBER para activar el envío desde el formulario.
             </p>
           )
         }
@@ -438,6 +422,9 @@ const showConfigNotice =
   ) as HTMLParagraphElement | null;
 
   if (form && status) {
+    const endpoint = form.dataset.contactEndpoint || "";
+    const whatsappNumber = form.dataset.contactWhatsapp || "";
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
@@ -468,10 +455,6 @@ const showConfigNotice =
       }
 
       // Try server endpoint first (if configured)
-      const endpoint =
-        import.meta.env.PUBLIC_CONTACT_ENDPOINT ||
-        form.getAttribute("data-contact-endpoint") ||
-        "";
       if (endpoint) {
         try {
           status.textContent = "Enviando...";
@@ -495,11 +478,34 @@ const showConfigNotice =
         }
       }
 
-      // Fallback to mailto if no endpoint
+      // Next try WhatsApp if configured
+      if (whatsappNumber) {
+        const message = [
+          `Consulta Aduken`,
+          `Problema o proceso: ${fields.problem}`,
+          `Nombre: ${fields.name}`,
+          `Empresa: ${fields.company}`,
+          `Actividad: ${fields.activity}`,
+          `Correo: ${fields.email}`,
+          `WhatsApp: ${fields.whatsapp || "No informado"}`,
+          `Usuarios aproximados: ${fields.users || "No informado"}`,
+          `Herramientas actuales: ${fields.tools || "No informado"}`,
+        ].join("\n");
+
+        const url = `https://wa.me/${encodeURIComponent(
+          whatsappNumber,
+        )}?text=${encodeURIComponent(message)}`;
+        window.location.href = url;
+        status.textContent =
+          "Se abrirá WhatsApp para enviar tu mensaje con los detalles.";
+        return;
+      }
+
+      // Fallback to mailto if no endpoint or WhatsApp
       const recipient = form.getAttribute("data-contact-email") || "";
       if (!recipient) {
         status.textContent =
-          "El envío se habilitará cuando se configure PUBLIC_CONTACT_EMAIL o un endpoint de contacto.";
+          "El envío se habilitará cuando se configure PUBLIC_CONTACT_EMAIL, PUBLIC_CONTACT_ENDPOINT o PUBLIC_WHATSAPP_NUMBER.";
         return;
       }
 
